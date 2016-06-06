@@ -64,7 +64,7 @@ class Nivel_01(Nivel):
         # llamamos al padre constructor
         Nivel.__init__(self, jugador)
  
-        self.background = pygame.image.load("background_01.png").convert()
+        self.background = pygame.image.load("img/background_01.png").convert()
         self.background.set_colorkey(constantes.color_blanco)
         self.level_limit = -2500#limite del nivel
  
@@ -114,7 +114,7 @@ class Nivel_02(Nivel):
         # padre constructor
         Nivel.__init__(self, jugador)
  
-        self.background = pygame.image.load("background_02.png").convert()
+        self.background = pygame.image.load("img/background_02.png").convert()
         self.background.set_colorkey(constantes.color_blanco)
         self.level_limit = -1000
  

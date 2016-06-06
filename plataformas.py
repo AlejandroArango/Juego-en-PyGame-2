@@ -6,7 +6,7 @@ import pygame
 from funcion_sprites import Sprite
  
 # variables que se tomaran para pintar las plataformas
- 
+#nombre objeto		     x	  y	  xtam/ytam
 GRASS_LEFT            = (576, 720, 70, 70)
 GRASS_RIGHT           = (576, 576, 70, 70)
 GRASS_MIDDLE          = (504, 576, 70, 70)
@@ -23,7 +23,7 @@ class Plataforma(pygame.sprite.Sprite):
             code. """
         super().__init__()
  
-        sprite_imagen = Sprite("tiles_spritesheet.png")
+        sprite_imagen = Sprite("img/tiles_spritesheet.png")
         # toma la imagen para la plataforma
         self.image = sprite_imagen.get_imagen(sprite_imagen_data[0],
                                               sprite_imagen_data[1],
