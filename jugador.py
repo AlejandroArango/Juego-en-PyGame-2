@@ -1,4 +1,4 @@
-"""
+""" 
 jugador.
 """
 import pygame
@@ -36,7 +36,7 @@ class JugadorPrincipal(pygame.sprite.Sprite):
 		self.level = None
 		
 		#cargamos el sprite del personaje principal
-		sprite_imagen = Sprite("walking_mega2.png")
+		sprite_imagen = Sprite("img/walking_mega2.png")
 		
 		# cargamos el sprite del personaje principal DERECHA
 		image = sprite_imagen.get_imagen(0, 0, 50, 58)
@@ -125,11 +125,11 @@ class JugadorPrincipal(pygame.sprite.Sprite):
 				self.rect.x += block.change_x
  
 	def gravedad(self):
-		""" Calculate effect of gravity. """
+		""" calcula efecto de la gravedad. """
 		if self.change_y == 0:
 			self.change_y = 1
 		else:
-			self.change_y += .5
+			self.change_y += .35#cuanto disminuimos cuando caemos
 
 		# verificar si estamos en el suelo
 		if self.rect.y >= constantes.alto_pantalla - self.rect.height and self.change_y >= 0:
@@ -150,11 +150,11 @@ class JugadorPrincipal(pygame.sprite.Sprite):
 
 	# JugadorPrincipal-control de movimientos:
 	def ir_izquierda(self):
-		self.change_x = -6#determina la velocidad de movimiento
+		self.change_x = -7#determina la velocidad de movimiento
 		self.direction = "L"
 
 	def ir_derecha(self):
-		self.change_x = 6#determina la velocidad de movimiento
+		self.change_x = 7#determina la velocidad de movimiento
 		self.direction = "R"
 
 	def detenerse(self):

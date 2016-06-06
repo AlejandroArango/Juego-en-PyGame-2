@@ -1,4 +1,4 @@
-"""
+""" 
 tomar sprites individuales de una imagen de sprite
 """
 import pygame
