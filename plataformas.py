@@ -7,12 +7,13 @@ from funcion_sprites import Sprite
  
 # variables que se tomaran para pintar las plataformas
 #nombre objeto		     x	  y	  xtam/ytam
-GRASS_LEFT            = (576, 720, 70, 70)
-GRASS_RIGHT           = (576, 576, 70, 70)
-GRASS_MIDDLE          = (504, 576, 70, 70)
-STONE_PLATFORM_LEFT   = (432, 720, 70, 40)
-STONE_PLATFORM_MIDDLE = (648, 648, 70, 40)
-STONE_PLATFORM_RIGHT  = (792, 648, 70, 40)
+bosque_izquierdo       = (560, 700, 70, 70)
+bosque_derecho         = (560, 560, 70, 70)
+bosque_centro          = (490, 560, 70, 70)
+
+plataforma_piedra_izq   = (420, 700, 70, 70)
+plataforma_piedra_cen = (630, 630, 70, 40)
+plataforma_piedra_der  = (770, 630, 70, 40)
  
 class Plataforma(pygame.sprite.Sprite):
     """ Plataforma que se usa para saltar en ella """

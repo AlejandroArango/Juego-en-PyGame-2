@@ -34,7 +34,7 @@ class Nivel():
         """ clase que dibuja todo del nivel que la invoca. """
  
         # dibujamos el fondo que nos da sensacion de profundidad
-        pantalla.fill(constantes.color_azul)
+        pantalla.fill(constantes.color_negro)
         pantalla.blit(self.background,(self.world_shift // 3,0))
  
         # dibujamos todas las listas que tenemos guardadas
@@ -64,23 +64,26 @@ class Nivel_01(Nivel):
         # llamamos al padre constructor
         Nivel.__init__(self, jugador)
  
-        self.background = pygame.image.load("img/background_01.png").convert()
-        self.background.set_colorkey(constantes.color_blanco)
+        self.background = pygame.image.load("img/prueba.png").convert()
+        self.background.set_colorkey(constantes.color_negro)
         self.level_limit = -2500#limite del nivel
  
 		#vector con los diferentes tipos de plataformas con sus respectivas posiciones X y Y para ubicarlas
-        level = [ [plataformas.GRASS_LEFT, 500, 500],
-                  [plataformas.GRASS_MIDDLE, 570, 500],
-                  [plataformas.GRASS_RIGHT, 640, 500],
-                  [plataformas.GRASS_LEFT, 800, 400],
-                  [plataformas.GRASS_MIDDLE, 870, 400],
-                  [plataformas.GRASS_RIGHT, 940, 400],
-                  [plataformas.GRASS_LEFT, 1000, 500],
-                  [plataformas.GRASS_MIDDLE, 1070, 500],
-                  [plataformas.GRASS_RIGHT, 1140, 500],
-                  [plataformas.STONE_PLATFORM_LEFT, 1120, 280],
-                  [plataformas.STONE_PLATFORM_MIDDLE, 1190, 280],
-                  [plataformas.STONE_PLATFORM_RIGHT, 1260, 280],
+        level = [ [plataformas.bosque_izquierdo, 500, 500],
+                  [plataformas.bosque_centro, 570, 500],
+                  [plataformas.bosque_derecho, 640, 500],
+				  
+                  [plataformas.bosque_izquierdo, 800, 400],
+                  [plataformas.bosque_centro, 870, 400],
+                  [plataformas.bosque_derecho, 940, 400],
+				  
+                  [plataformas.bosque_izquierdo, 1000, 500],
+                  [plataformas.bosque_centro, 1070, 500],
+                  [plataformas.bosque_derecho, 1140, 500],
+				  
+                  [plataformas.plataforma_piedra_izq, 1120, 280],
+                  [plataformas.plataforma_piedra_cen, 1190, 280],
+                  [plataformas.plataforma_piedra_der, 1260, 280],
                   ]
  
  
@@ -93,7 +96,7 @@ class Nivel_01(Nivel):
             self.platform_list.add(block)
  
         # adicionamos una plataforma en movimiento
-        block = plataformas.MovimientoPlataforma(plataformas.STONE_PLATFORM_MIDDLE)
+        block = plataformas.MovimientoPlataforma(plataformas.plataforma_piedra_cen)
         block.rect.x = 1350
         block.rect.y = 280
         block.boundary_left = 1350
@@ -115,22 +118,22 @@ class Nivel_02(Nivel):
         Nivel.__init__(self, jugador)
  
         self.background = pygame.image.load("img/background_02.png").convert()
-        self.background.set_colorkey(constantes.color_blanco)
+        self.background.set_colorkey(constantes.color_negro)
         self.level_limit = -1000
  
         #vector con los diferentes tipos de plataformas con sus respectivas posiciones X y Y para ubicarlas
-        level = [ [plataformas.STONE_PLATFORM_LEFT, 500, 550],
-                  [plataformas.STONE_PLATFORM_MIDDLE, 570, 550],
-                  [plataformas.STONE_PLATFORM_RIGHT, 640, 550],
-                  [plataformas.GRASS_LEFT, 800, 400],
-                  [plataformas.GRASS_MIDDLE, 870, 400],
-                  [plataformas.GRASS_RIGHT, 940, 400],
-                  [plataformas.GRASS_LEFT, 1000, 500],
-                  [plataformas.GRASS_MIDDLE, 1070, 500],
-                  [plataformas.GRASS_RIGHT, 1140, 500],
-                  [plataformas.STONE_PLATFORM_LEFT, 1120, 280],
-                  [plataformas.STONE_PLATFORM_MIDDLE, 1190, 280],
-                  [plataformas.STONE_PLATFORM_RIGHT, 1260, 280],
+        level = [ [plataformas.plataforma_piedra_izq, 500, 550],
+                  [plataformas.plataforma_piedra_cen, 570, 550],
+                  [plataformas.plataforma_piedra_der, 640, 550],
+                  [plataformas.bosque_izquierdo, 800, 400],
+                  [plataformas.bosque_centro, 870, 400],
+                  [plataformas.bosque_derecho, 940, 400],
+                  [plataformas.bosque_izquierdo, 1000, 500],
+                  [plataformas.bosque_centro, 1070, 500],
+                  [plataformas.bosque_derecho, 1140, 500],
+                  [plataformas.plataforma_piedra_izq, 1120, 280],
+                  [plataformas.plataforma_piedra_cen, 1190, 280],
+                  [plataformas.plataforma_piedra_der, 1260, 280],
                   ]
  
  
@@ -143,7 +146,7 @@ class Nivel_02(Nivel):
             self.platform_list.add(block)
  
        # adicionamos una plataforma en movimiento
-        block = plataformas.MovimientoPlataforma(plataformas.STONE_PLATFORM_MIDDLE)
+        block = plataformas.MovimientoPlataforma(plataformas.plataforma_piedra_cen)
         block.rect.x = 1500
         block.rect.y = 300
         block.boundary_top = 100
