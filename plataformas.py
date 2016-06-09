@@ -11,9 +11,23 @@ bosque_izquierdo       = (560, 700, 70, 70)
 bosque_derecho         = (560, 560, 70, 70)
 bosque_centro          = (490, 560, 70, 70)
 
-plataforma_piedra_izq   = (420, 700, 70, 70)
+bosque_plataforma_izq=(560,350,70,40)
+bosque_plataforma_cen=(560,280,70,40)
+bosque_plataforma_der=(560,210,70,40)
+bosque_plataforma_mov=(560,420,70,40)
+
+inicio_izq_a           = (140, 420, 70, 70)
+inicio_der_a           = (420, 280, 70, 70)
+
+inicio_izquierdo       = (140, 350, 70, 70)
+inicio_centro          = (70, 420, 70, 70)
+inicio_derecho         = (140, 210, 70, 70)
+
+inicio_plat_mov=(140,140,70,40)
+
+plataforma_piedra_izq = (420, 700, 70, 70)
 plataforma_piedra_cen = (630, 630, 70, 40)
-plataforma_piedra_der  = (770, 630, 70, 40)
+plataforma_piedra_der = (770, 630, 70, 40)
  
 class Plataforma(pygame.sprite.Sprite):
     """ Plataforma que se usa para saltar en ella """

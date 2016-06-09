@@ -4,6 +4,7 @@ import constantes
 import niveles
  
 from jugador import JugadorPrincipal
+from disparo import DisparoJugador
  
 def main():
     """ Main del Programa """
@@ -52,7 +53,13 @@ def main():
                     jugador.ir_derecha()
                 if event.key == pygame.K_UP:
                     jugador.saltar()
- 
+                if event.key == pygame.K_d:
+                    pos = jugador.getPosicion()
+                    disparo = DisparoJugador(pos[0],pos[1],jugador.getDerecha())
+                    disparo.level = current_level
+                    disparo.lista_sprites_activos = lista_sprites_activos
+                    lista_sprites_activos.add(disparo)
+
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT and jugador.change_x < 0:
                     jugador.detenerse()

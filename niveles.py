@@ -69,21 +69,21 @@ class Nivel_01(Nivel):
         self.level_limit = -2500#limite del nivel
  
 		#vector con los diferentes tipos de plataformas con sus respectivas posiciones X y Y para ubicarlas
-        level = [ [plataformas.bosque_izquierdo, 500, 500],
-                  [plataformas.bosque_centro, 570, 500],
-                  [plataformas.bosque_derecho, 640, 500],
+        level = [ [plataformas.inicio_izquierdo, 500, 500],
+                  [plataformas.inicio_centro, 570, 500],
+                  [plataformas.inicio_derecho, 640, 500],
 				  
-                  [plataformas.bosque_izquierdo, 800, 400],
-                  [plataformas.bosque_centro, 870, 400],
-                  [plataformas.bosque_derecho, 940, 400],
+                  [plataformas.inicio_izquierdo, 800, 400],
+                  [plataformas.inicio_centro, 870, 400],
+                  [plataformas.inicio_derecho, 940, 400],
 				  
-                  [plataformas.bosque_izquierdo, 1000, 500],
-                  [plataformas.bosque_centro, 1070, 500],
-                  [plataformas.bosque_derecho, 1140, 500],
+				  [plataformas.inicio_izquierdo, 800, 400],
+                  [plataformas.inicio_centro, 870, 400],
+                  [plataformas.inicio_derecho, 940, 400],
 				  
-                  [plataformas.plataforma_piedra_izq, 1120, 280],
-                  [plataformas.plataforma_piedra_cen, 1190, 280],
-                  [plataformas.plataforma_piedra_der, 1260, 280],
+                  [plataformas.bosque_plataforma_izq, 1120, 280],
+                  [plataformas.bosque_plataforma_cen, 1190, 280],
+                  [plataformas.bosque_plataforma_der, 1260, 280],
                   ]
  
  

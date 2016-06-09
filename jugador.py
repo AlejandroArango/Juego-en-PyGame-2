@@ -159,3 +159,13 @@ class JugadorPrincipal(pygame.sprite.Sprite):
 
 	def detenerse(self):
 		self.change_x = 0#si nos detenemos
+
+	def getPosicion(self): # retorna la posicion del jugador.
+		return (self.rect.x, self.rect.y)
+
+	def getDerecha(self): # retorna True si el jugador mira a la derecha
+		if self.direction == "R":
+			return True
+		else:
+			return False
+
