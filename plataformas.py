@@ -13,6 +13,7 @@ from funcion_sprites import Sprite
 suelo_inicio           = (140,  0, 70, 40)
 
 agua				   = (420,560, 70, 70)
+lava				   = (420,770, 70, 70)
 
 cuerda_a			   = (420, 70, 70, 70)
 cuerda_b			   = (350,840, 70, 70)
