@@ -8,6 +8,8 @@ from disparo import DisparoJugador
  
 def main():
     """ Main del Programa """
+    #efecto lluvia
+    contador=0	
     pygame.init()
  
     # definimos pantalla
@@ -25,17 +27,30 @@ def main():
     level_list.append(niveles.Nivel_02(jugador))
  
     # definimos nivel inicial
-    current_level_no = 0
+    current_level_no = 1
     current_level = level_list[current_level_no]
  
     lista_sprites_activos = pygame.sprite.Group()
     jugador.level = current_level
  
-    jugador.rect.x = 340
-    jugador.rect.y = constantes.alto_pantalla - jugador.rect.height
-    lista_sprites_activos.add(jugador)
+######################################################################################## 
  
-    #
+    jugador.rect.x = 100#posicion inicial del jugador
+    jugador.rect.y = 0#constantes.alto_pantalla - jugador.rect.height
+    lista_sprites_activos.add(jugador)
+	
+#########################################################################################
+#efecto de lluvia
+#Gameover = pygame.image.load('img/inicio.png').convert_alpha()
+
+    nivel1 = pygame.image.load('img/espacio_efecto.png').convert_alpha()
+
+    def ini_polvo(contador,efecto):
+        pantalla.blit(efecto,(3400,-640+(contador%40*15)))
+        pantalla.blit(efecto,(3400,contador%40*15))
+
+#########################################################################################	
+	
     terminar = False
  
     reloj = pygame.time.Clock()
@@ -69,27 +84,31 @@ def main():
         # actualizar jugador.
         lista_sprites_activos.update()
  
- #esto no lo entendi
- 
         # Update items in the level
         current_level.update()
  
-        # If the jugador gets near the right side, shift the world left (-x)
-        if jugador.rect.right >= 500:
-            diff = jugador.rect.right - 500
-            jugador.rect.right = 500
-            current_level.shift_world(-diff)
+        # si el jugador esta cerca del lado derecho, cambia el mundo a la izquierdo (-x)
+		
+        if jugador.rect.right >= 450:           #para mantener en el centro
+            diff = jugador.rect.right - 450     #para mantener en el centro
+            jugador.rect.right = 450            #para mantener en el centro
+            current_level.shift_world(-diff)    #para mantener en el centro
   
-        # If the jugador gets near the left side, shift the world right (+x)
-        if jugador.rect.left <= 120:
-            diff = 120 - jugador.rect.left
-            jugador.rect.left = 120
-            current_level.shift_world(diff)
- 
+        # si el jugador esta cerca del lado izquierdo, cambia el mundo a la derecha (+x)
+		
+        if jugador.rect.left <= 450:            #para mantener en el centro
+            diff = 450 - jugador.rect.left      #para mantener en el centro
+            jugador.rect.left = 450             #para mantener en el centro
+            current_level.shift_world(diff)     #para mantener en el centro
+			
+        ini_polvo(contador,nivel1)    
+        contador+=1
+		
         # pasar de nivel cuando llega al final
         current_position = jugador.rect.x + current_level.world_shift
+		
         if current_position < current_level.level_limit:
-            jugador.rect.x = 120
+            jugador.rect.x = 450#120
             if current_level_no < len(level_list)-1:
                 current_level_no += 1
                 current_level = level_list[current_level_no]

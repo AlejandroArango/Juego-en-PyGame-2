@@ -7,28 +7,57 @@ from funcion_sprites import Sprite
  
 # variables que se tomaran para pintar las plataformas
 #nombre objeto		     x	  y	  xtam/ytam
-bosque_izquierdo       = (560, 700, 70, 70)
-bosque_derecho         = (560, 560, 70, 70)
-bosque_centro          = (490, 560, 70, 70)
 
-bosque_plataforma_izq=(560,350,70,40)
-bosque_plataforma_cen=(560,280,70,40)
-bosque_plataforma_der=(560,210,70,40)
-bosque_plataforma_mov=(560,420,70,40)
+########################################################
 
-inicio_izq_a           = (140, 420, 70, 70)
-inicio_der_a           = (420, 280, 70, 70)
+suelo_inicio           = (140,  0, 70, 40)
 
-inicio_izquierdo       = (140, 350, 70, 70)
-inicio_centro          = (70, 420, 70, 70)
-inicio_derecho         = (140, 210, 70, 70)
+agua				   = (420,560, 70, 70)
 
-inicio_plat_mov=(140,140,70,40)
+cuerda_a			   = (420, 70, 70, 70)
+cuerda_b			   = (350,840, 70, 70)
 
-plataforma_piedra_izq = (420, 700, 70, 70)
-plataforma_piedra_cen = (630, 630, 70, 40)
-plataforma_piedra_der = (770, 630, 70, 40)
- 
+inicio_izq_a           = (140,420, 70, 70)
+inicio_der_a           = (140,280, 70, 70)
+
+inicio_izq_b           = (140, 70, 70, 40)
+inicio_cen_b           = (140,  0, 70, 40)
+inicio_der_b           = ( 70,840, 70, 40)
+
+bloque_muro_a		   = (140,560, 70, 70)
+bloque_muro_b	 	   = (140,630, 70, 40)
+bloque_muro_c	 	   = (140,600, 70, 30)
+
+inicio_izquierdo       = (140,350, 70, 70)
+inicio_centro          = ( 70,420, 70, 70)
+inicio_derecho         = (140,210, 70, 70)
+
+inicio_plat_mov        = (140,140, 70, 40)
+
+########################################################
+
+suelo_bosque           = (560,280, 70, 40)
+
+cuerda_a			   = (420, 70, 70, 70)
+cuerda_b			   = (350,840, 70, 70)
+
+bosque_izq_a           = (560,700, 70, 70)
+bosque_der_a           = (560,560, 70, 70)
+
+bosque_izq_b           = (560,350, 70, 40)
+bosque_cen_b           = (560,280, 70, 40)
+bosque_der_b           = (560,210, 70, 40)
+
+bloque_bosque_a		   = (560,840, 70, 70)
+bloque_bosque_b	 	   = (630,  0, 70, 40)
+bloque_bosque_c	 	   = (560,840, 70, 30)
+
+bosque_izquierdo       = (560,630, 70, 70)
+bosque_centro          = (490,560, 70, 70)
+bosque_derecho         = (560,490, 70, 70)
+
+bosque_plat_mov        = (560,420, 70, 40)
+	
 class Plataforma(pygame.sprite.Sprite):
     """ Plataforma que se usa para saltar en ella """
  
@@ -40,10 +69,10 @@ class Plataforma(pygame.sprite.Sprite):
  
         sprite_imagen = Sprite("img/tiles_spritesheet.png")
         # toma la imagen para la plataforma
-        self.image = sprite_imagen.get_imagen(sprite_imagen_data[0],
-                                              sprite_imagen_data[1],
-                                              sprite_imagen_data[2],
-                                              sprite_imagen_data[3])
+        self.image = sprite_imagen.get_imagen(sprite_imagen_data[0],#pos x
+                                              sprite_imagen_data[1],#pos y
+                                              sprite_imagen_data[2],#ancho
+                                              sprite_imagen_data[3])#alto
  
         self.rect = self.image.get_rect()
  

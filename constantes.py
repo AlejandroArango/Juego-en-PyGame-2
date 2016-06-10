@@ -10,5 +10,7 @@ color_azul     = (   0,   0, 255)
  
 # dimensiones pantalla
 ancho_pantalla  = 900
-alto_pantalla = 600
+alto_pantalla = 640
 
+#efecto lluvia
+contador=0

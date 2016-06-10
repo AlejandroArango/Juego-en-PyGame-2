@@ -87,6 +87,7 @@ class JugadorPrincipal(pygame.sprite.Sprite):
 		# Mover izquierda/derecha
 		self.rect.x += self.change_x
 		pos = self.rect.x + self.level.world_shift
+		print (pos)
 		if self.direction == "R":
 			frame = (pos // 30) % len(self.walking_frames_r)
 			self.image = self.walking_frames_r[frame]
@@ -94,7 +95,7 @@ class JugadorPrincipal(pygame.sprite.Sprite):
 			frame = (pos // 30) % len(self.walking_frames_l)
 			self.image = self.walking_frames_l[frame]
 
-		# See if we hit anything
+		# verificar si chocamos con algo
 		block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
 		for block in block_hit_list:
 			# If we are moving right,
@@ -108,7 +109,7 @@ class JugadorPrincipal(pygame.sprite.Sprite):
 		# Move up/down
 		self.rect.y += self.change_y
 
-		# Check and see if we hit anything
+		# verifica si chocamos con algo
 		block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
 		for block in block_hit_list:
  
@@ -146,7 +147,7 @@ class JugadorPrincipal(pygame.sprite.Sprite):
 
 		# saltar
 		if len(platform_hit_list) > 0 or self.rect.bottom >= constantes.alto_pantalla:
-			self.change_y = -10#determina que tan alto llegamos cuando saltamos
+			self.change_y = -9#determina que tan alto llegamos cuando saltamos
 
 	# JugadorPrincipal-control de movimientos:
 	def ir_izquierda(self):
