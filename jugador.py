@@ -9,17 +9,14 @@ from plataformas import MovimientoPlataforma
 from funcion_sprites import Sprite
 
 class JugadorPrincipal(pygame.sprite.Sprite):
-	""" This class represents the bar at the bottom that the jugador
-	controls. """
-  
+
 	# -- Methods
 	def __init__(self):
-
-		""" Constructor function """
+	
 
 		# Call the parent's constructor
 		super().__init__()
-
+		
 		# atributos
 		# velocidad inicial del jugador
 		self.change_x = 0
@@ -82,12 +79,14 @@ class JugadorPrincipal(pygame.sprite.Sprite):
 	def update(self):
 		""" Move the jugador. """
 		# gravedad
-		self.gravedad()
-
+		self.gravedad()		
+		
 		# Mover izquierda/derecha
 		self.rect.x += self.change_x
 		pos = self.rect.x + self.level.world_shift
-		print (pos)
+		
+		print ("posicion X  " + str(pos) + "  cambio Y " + str(self.rect.y+58))
+		
 		if self.direction == "R":
 			frame = (pos // 30) % len(self.walking_frames_r)
 			self.image = self.walking_frames_r[frame]
@@ -106,7 +105,7 @@ class JugadorPrincipal(pygame.sprite.Sprite):
 				# Otherwise if we are moving left, do the opposite.
 				self.rect.left = block.rect.right
  
-		# Move up/down
+		# mover arriba / abajo
 		self.rect.y += self.change_y
 
 		# verifica si chocamos con algo
@@ -169,4 +168,13 @@ class JugadorPrincipal(pygame.sprite.Sprite):
 			return True
 		else:
 			return False
+
+	def chocar_lava_acido(self):
+	
+		self.salud -= 5
+
+	def menosVida(self):
+
+		self.salud = self.salud - 1
+		
 

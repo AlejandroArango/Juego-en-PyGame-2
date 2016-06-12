@@ -1,8 +1,12 @@
 import pygame 
- 
+
 import constantes
-import niveles
- 
+
+import nivel_1
+import nivel_2
+import nivel_3
+
+from vida import * 
 from jugador import JugadorPrincipal
 from disparo import DisparoJugador
  
@@ -15,19 +19,25 @@ def main():
     # definimos pantalla
     tamano_pantalla = [constantes.ancho_pantalla, constantes.alto_pantalla]
     pantalla = pygame.display.set_mode(tamano_pantalla)
- 
+	
+######################################################################################## 
+	#fuentes de texto
+    fuente = pygame.font.Font("Bitsumishi.TTF", 36)
+######################################################################################## 	
+
     pygame.display.set_caption("Planeswalker")
  
     # creamos jugador
     jugador = JugadorPrincipal()
  
-    # creamos niveles
+    # creamos niveles uno a uno
     level_list = []
-    level_list.append(niveles.Nivel_01(jugador))
-    level_list.append(niveles.Nivel_02(jugador))
- 
-    # definimos nivel inicial
-    current_level_no = 1
+    level_list.append(nivel_1.Nivel_01(jugador))
+    level_list.append(nivel_2.Nivel_02(jugador))
+    level_list.append(nivel_3.Nivel_03(jugador))
+	
+    # definimos nivel inicial coloque nivel actual -1
+    current_level_no = 2
     current_level = level_list[current_level_no]
  
     lista_sprites_activos = pygame.sprite.Group()
@@ -35,7 +45,7 @@ def main():
  
 ######################################################################################## 
  
-    jugador.rect.x = 100#posicion inicial del jugador
+    jugador.rect.x = 3100#posicion inicial del jugador
     jugador.rect.y = 0#constantes.alto_pantalla - jugador.rect.height
     lista_sprites_activos.add(jugador)
 	
@@ -50,6 +60,13 @@ def main():
         pantalla.blit(efecto,(3400,contador%40*15))
 
 #########################################################################################	
+
+    con_cuadros = 0
+    tasa_cambio = 60
+    tiempo_ini = 10
+    seglim=0	
+	
+#########################################################################################
 	
     terminar = False
  
@@ -112,10 +129,50 @@ def main():
             if current_level_no < len(level_list)-1:
                 current_level_no += 1
                 current_level = level_list[current_level_no]
-                jugador.level = current_level
- 
+                jugador.level = current_level	 
+
         current_level.draw(pantalla)
         lista_sprites_activos.draw(pantalla)
+		
+        #print (current_position)		
+####################################################################################				
+				
+		#mostrar barra de vida jugador
+        '''for nv in range(JugadorPrincipal.salud):
+            vd = Vida(pantalla, nv)
+        if JugadorPrincipal.salud>0:
+            txt_salud = fuente.render("Salud   "+ str(JugadorPrincipal.salud), True, ( 255, 255, 255))
+            pantalla.blit(txt_salud, [320,27])
+        else:
+            txt_salud = fuente.render("Salud   0", True, ( 255, 255, 255))
+            pantalla.blit(txt_salud, [320,27])'''
+
+		#tiempo del juego
+        if not terminar:
+            total_segundos = con_cuadros // tasa_cambio
+            minutos = total_segundos // 60
+            segundos = total_segundos % 60
+            tiempo_final = "Tiempo {0:02}:{1:02}".format(minutos, segundos)
+            texto = fuente.render(tiempo_final, True, (   0,   0,   0))
+            pantalla.blit(texto, [current_position, 100])
+            total_segundos = tiempo_ini - (con_cuadros // tasa_cambio)
+            minutos = total_segundos // 60
+            segundos = total_segundos % 60
+            seglim=segundos
+            con_cuadros += 1
+        else:
+            total_segundos = con_cuadros // tasa_cambio
+            minutos = total_segundos // 60
+            segundos = total_segundos % 60
+            tiempo_final = "Tiempo {0:02}:{1:02}".format(minutos, segundos)
+            texto = fuente.render(tiempo_final, True, (   0,   0,   0))
+            pantalla.blit(texto, [550, 560])
+            total_segundos = tiempo_ini - (con_cuadros // tasa_cambio)
+            minutos = total_segundos // 60
+            segundos = total_segundos % 60
+            seglim=segundos				
+			
+####################################################################################		
  
         reloj.tick(60)
  

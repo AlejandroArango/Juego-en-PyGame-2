@@ -1,59 +1,10 @@
 import pygame 
- 
 import constantes
 import plataformas
- 
-class Nivel():
-    """ aca definimos que se utilizara en cada nivel, adicionamos sub clases por nivel. """
- 
-    def __init__(self, jugador):
-        """ Constructor. Pass in a handle to jugador. Needed for when moving plataformas
-            collide with the jugador. """
- 
-        # lista de sprites que se usaran en el nivel
-        self.platform_list = None
-        self.enemy_list = None
- 
-        # imagen de fondo
-        self.background = None
- 
-        # que tan lejos llega el nivel
-        self.world_shift = 0
-        self.level_limit = -1000 #distancia maxima
-        self.platform_list = pygame.sprite.Group()
-        self.enemy_list = pygame.sprite.Group()
-        self.jugador = jugador
- 
-    # actualizacion de cada nivel
-    def update(self):
-        """ actualizacion de todas las listas."""
-        self.platform_list.update()
-        self.enemy_list.update()
- 
-    def draw(self, pantalla):
-        """ clase que dibuja todo del nivel que la invoca. """
- 
-        # dibujamos el fondo que nos da sensacion de profundidad
-        pantalla.fill(constantes.color_blanco)
-        pantalla.blit(self.background,(self.world_shift // 3,0))
- 
-        # dibujamos todas las listas que tenemos guardadas
-        self.platform_list.draw(pantalla)
-        self.enemy_list.draw(pantalla)
- 
-    def shift_world(self, shift_x):
-        """ aca determinamos si el jugador se mueve derecha/izquierda para mover todo el entorno: """
- 
-        # vamos guardando cuando se ha movido
-        self.world_shift += shift_x
- 
-        # vamos determinando todas las listas de sprites
-        for platform in self.platform_list:
-            platform.rect.x += shift_x
- 
-        for enemy in self.enemy_list:
-            enemy.rect.x += shift_x
- 
+import clase_nivel
+from clase_nivel import Nivel
+
+
 # creamos los niveles, clase por nivel
 class Nivel_01(Nivel):
     """ nivel 1. """
@@ -331,20 +282,27 @@ class Nivel_02(Nivel):
                   [plataformas.bosque_der_b,    6690, 410],
 				  
 				  [plataformas.bosque_izq_b,    7000, 410],
-                  [plataformas.bosque_cen_b,    7070, 410],				  
+                  [plataformas.bosque_cen_b,    7070, 410],
                   [plataformas.bosque_cen_b,    7140, 410],
                   [plataformas.bosque_cen_b,    7210, 410],
                   [plataformas.bosque_cen_b,    7280, 410],
                   [plataformas.bosque_cen_b,    7350, 410],
-                  [plataformas.bosque_cen_b,    7420, 410],				  
+                  [plataformas.bosque_cen_b,    7420, 410],
                   [plataformas.bosque_der_b,    7490, 410],
 
-		  
+                  [plataformas.bloque_bosque_a,   7900, 530],
+				  [plataformas.bloque_bosque_a,   7900, 460],
+                  [plataformas.bloque_bosque_a,   7900, 390],		
+                  [plataformas.bloque_bosque_a,   7900, 320],
+                  [plataformas.bloque_bosque_a,   7900, 250],				  
+                  [plataformas.bloque_bosque_a,   7900, 180],		
+				  [plataformas.bloque_bosque_c,   7900, 150],
+                  [plataformas.bloque_bosque_b,   7900, 110],		  
                   ]
  
  
 ############################## S U E L O ###################################
-        pos_y = 600
+        '''pos_y = 600
         pos_x = -700
         while pos_x < 8050:
         #if pos_x <= 3990:
@@ -356,7 +314,7 @@ class Nivel_02(Nivel):
             suelob.jugador = self.jugador
             suelob.level = self
             self.platform_list.add(suelob)
-        print ("H O L A ! ! ! ")
+        print ("H O L A ! ! ! ")'''
 		
 ############################################################################			
  
@@ -371,7 +329,7 @@ class Nivel_02(Nivel):
 ######################################################################################			
 			
        # adicionamos una plataforma en movimiento 1
-        block_bosque_a = plataformas.MovimientoPlataforma(plataformas.bosque_plat_mov)
+        '''block_bosque_a = plataformas.MovimientoPlataforma(plataformas.bosque_plat_mov)
         block_bosque_a.rect.x = 1100
         block_bosque_a.rect.y = 110
         block_bosque_a.boundary_top = 110
@@ -417,56 +375,67 @@ class Nivel_02(Nivel):
 ######################################################################################		
 
        # adicionamos una plataforma en movimiento 5
-        block_bosque_a = plataformas.MovimientoPlataforma(plataformas.bosque_plat_mov)
-        block_bosque_a.rect.x = 4730
-        block_bosque_a.rect.y = 110
-        block_bosque_a.boundary_top = 110
-        block_bosque_a.boundary_bottom = 440
-        block_bosque_a.change_y = 1
-        block_bosque_a.jugador = self.jugador
-        block_bosque_a.level = self
-        self.platform_list.add(block_bosque_a)
+        block_bosque_e = plataformas.MovimientoPlataforma(plataformas.bosque_plat_mov)
+        block_bosque_e.rect.x = 4730
+        block_bosque_e.rect.y = 110
+        block_bosque_e.boundary_top = 110
+        block_bosque_e.boundary_bottom = 440
+        block_bosque_e.change_y = 1
+        block_bosque_e.jugador = self.jugador
+        block_bosque_e.level = self
+        self.platform_list.add(block_bosque_e)
 		
        # adicionamos una plataforma en movimiento 6
-        block_bosque_b = plataformas.MovimientoPlataforma(plataformas.bosque_plat_mov)
-        block_bosque_b.rect.x = 4930
-        block_bosque_b.rect.y = 110
-        block_bosque_b.boundary_top = 110
-        block_bosque_b.boundary_bottom = 440
-        block_bosque_b.change_y = 3
-        block_bosque_b.jugador = self.jugador
-        block_bosque_b.level = self
-        self.platform_list.add(block_bosque_b)
+        block_bosque_f = plataformas.MovimientoPlataforma(plataformas.bosque_plat_mov)
+        block_bosque_f.rect.x = 4930
+        block_bosque_f.rect.y = 110
+        block_bosque_f.boundary_top = 110
+        block_bosque_f.boundary_bottom = 440
+        block_bosque_f.change_y = 3
+        block_bosque_f.jugador = self.jugador
+        block_bosque_f.level = self
+        self.platform_list.add(block_bosque_f)
 
        # adicionamos una plataforma en movimiento 7
-        block_bosque_c = plataformas.MovimientoPlataforma(plataformas.bosque_plat_mov)
-        block_bosque_c.rect.x = 5130
-        block_bosque_c.rect.y = 110
-        block_bosque_c.boundary_top = 110
-        block_bosque_c.boundary_bottom = 440
-        block_bosque_c.change_y = 4
-        block_bosque_c.jugador = self.jugador
-        block_bosque_c.level = self
-        self.platform_list.add(block_bosque_c)
+        block_bosque_g = plataformas.MovimientoPlataforma(plataformas.bosque_plat_mov)
+        block_bosque_g.rect.x = 5130
+        block_bosque_g.rect.y = 110
+        block_bosque_g.boundary_top = 110
+        block_bosque_g.boundary_bottom = 440
+        block_bosque_g.change_y = 4
+        block_bosque_g.jugador = self.jugador
+        block_bosque_g.level = self
+        self.platform_list.add(block_bosque_g)
 
        # adicionamos una plataforma en movimiento 8
-        block_bosque_d = plataformas.MovimientoPlataforma(plataformas.bosque_plat_mov)
-        block_bosque_d.rect.x = 5330
-        block_bosque_d.rect.y = 110
-        block_bosque_d.boundary_top = 110
-        block_bosque_d.boundary_bottom = 440
-        block_bosque_d.change_y = 3
-        block_bosque_d.jugador = self.jugador
-        block_bosque_d.level = self
-        self.platform_list.add(block_bosque_d)	
+        block_bosque_h = plataformas.MovimientoPlataforma(plataformas.bosque_plat_mov)
+        block_bosque_h.rect.x = 5330
+        block_bosque_h.rect.y = 110
+        block_bosque_h.boundary_top = 110
+        block_bosque_h.boundary_bottom = 440
+        block_bosque_h.change_y = 3
+        block_bosque_h.jugador = self.jugador
+        block_bosque_h.level = self
+        self.platform_list.add(block_bosque_h)	
 
        # adicionamos una plataforma en movimiento 9
-        block_bosque_d = plataformas.MovimientoPlataforma(plataformas.bosque_plat_mov)
-        block_bosque_d.rect.x = 5530
-        block_bosque_d.rect.y = 110
-        block_bosque_d.boundary_top = 110
-        block_bosque_d.boundary_bottom = 440
-        block_bosque_d.change_y = 2
-        block_bosque_d.jugador = self.jugador
-        block_bosque_d.level = self
-        self.platform_list.add(block_bosque_d)		
+        block_bosque_i = plataformas.MovimientoPlataforma(plataformas.bosque_plat_mov)
+        block_bosque_i.rect.x = 5530
+        block_bosque_i.rect.y = 110
+        block_bosque_i.boundary_top = 110
+        block_bosque_i.boundary_bottom = 440
+        block_bosque_i.change_y = 2
+        block_bosque_i.jugador = self.jugador
+        block_bosque_i.level = self
+        self.platform_list.add(block_bosque_i)	'''
+
+       # adicionamos una plataforma en movimiento 9
+        block_bosque_j = plataformas.MovimientoPlataforma(plataformas.bosque_plat_mov)
+        block_bosque_j.rect.x = 7700
+        block_bosque_j.rect.y = 110
+        block_bosque_j.boundary_top = 110
+        block_bosque_j.boundary_bottom = 600
+        block_bosque_j.change_y = 1
+        block_bosque_j.jugador = self.jugador
+        block_bosque_j.level = self
+        self.platform_list.add(block_bosque_j)		
