@@ -121,9 +121,9 @@ class Nivel_02(Nivel):
  
  
 ############################## S U E L O ###################################
-        '''pos_y = 600
+        pos_y = 600
         pos_x = -700
-        while pos_x < 8050:
+        while pos_x < 10000:
         #if pos_x <= 3990:
 			# adicionamos suelo
             suelob = plataformas.MovimientoPlataforma(plataformas.suelo_bosque)
@@ -133,7 +133,7 @@ class Nivel_02(Nivel):
             suelob.jugador = self.jugador
             suelob.level = self
             self.platform_list.add(suelob)
-        print ("H O L A ! ! ! ")'''
+        print ("H O L A ! ! ! ")
 		
 ############################################################################			
  
@@ -148,7 +148,7 @@ class Nivel_02(Nivel):
 ######################################################################################			
 			
        # adicionamos una plataforma en movimiento 1
-        '''block_bosque_a = plataformas.MovimientoPlataforma(plataformas.bosque_plat_mov)
+        block_bosque_a = plataformas.MovimientoPlataforma(plataformas.bosque_plat_mov)
         block_bosque_a.rect.x = 1100
         block_bosque_a.rect.y = 110
         block_bosque_a.boundary_top = 110
@@ -246,7 +246,7 @@ class Nivel_02(Nivel):
         block_bosque_i.change_y = 2
         block_bosque_i.jugador = self.jugador
         block_bosque_i.level = self
-        self.platform_list.add(block_bosque_i)	'''
+        self.platform_list.add(block_bosque_i)
 
        # adicionamos una plataforma en movimiento 9
         block_bosque_j = plataformas.MovimientoPlataforma(plataformas.bosque_plat_mov)

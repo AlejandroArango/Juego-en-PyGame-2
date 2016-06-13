@@ -130,9 +130,9 @@ class Nivel_03(Nivel):
 				  
 				  
 ############################## S U E L O ###################################
-        '''pos_y = 600
+        pos_y = 600
         pos_x = -700
-        while pos_x < 2000:
+        while pos_x < 5000:
         #if pos_x <= 3990:
 			# adicionamos suelo
             suelod = plataformas.MovimientoPlataforma(plataformas.suelo_desierto)
@@ -142,7 +142,7 @@ class Nivel_03(Nivel):
             suelod.jugador = self.jugador
             suelod.level = self
             self.platform_list.add(suelod)
-        print ("H O L A ! ! ! ")'''
+        print ("H O L A ! ! ! ")
 		
 ############################################################################
 

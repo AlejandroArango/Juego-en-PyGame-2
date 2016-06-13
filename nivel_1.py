@@ -16,7 +16,7 @@ class Nivel_01(Nivel):
  
         self.background = pygame.image.load("img/prueba.png").convert_alpha()
         self.background.set_colorkey(constantes.color_blanco)
-        self.level_limit = -9000 #limite del nivel
+        self.level_limit = -4000 #limite del nivel
 		
 
 		
@@ -98,11 +98,11 @@ class Nivel_01(Nivel):
                   [plataformas.bloque_muro_b,   3400, 110],			  
                   ]
 				  			  
-'''
+
 ############################## S U E L O ###################################
         pos_y = 600
         pos_x = -700
-        while pos_x < 8050:
+        while pos_x < 5400:
         #if pos_x <= 3990:
 			# adicionamos suelo
             suelo = plataformas.MovimientoPlataforma(plataformas.suelo_inicio)
@@ -178,4 +178,4 @@ class Nivel_01(Nivel):
         block_e.change_y = 1
         block_e.jugador = self.jugador
         block_e.level = self
-        self.platform_list.add(block_e)	'''
+        self.platform_list.add(block_e)

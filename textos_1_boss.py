@@ -1,0 +1,8 @@
+locin_1 =     "veo que lograste llegar hasta aca"
+locin_2 =     "no esperaba menos de ti"
+locin_3 =     "lastima que deba eliminarte"
+jace_4  =     "locin ! ! !"
+jace_5  =     "de que hablas ! ! !"
+locin_6 =     "yo fui quien borro tus recuerdos"
+locin_7 =     " muere ! ! !"
+jace_8  =     "nooooo ! ! !"

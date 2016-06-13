@@ -6,6 +6,7 @@ import pygame
 import constantes
 
 from plataformas import MovimientoPlataforma
+
 from funcion_sprites import Sprite
 
 class JugadorPrincipal(pygame.sprite.Sprite):
@@ -17,6 +18,9 @@ class JugadorPrincipal(pygame.sprite.Sprite):
 		# Call the parent's constructor
 		super().__init__()
 		
+		#salud del jugador
+		self.salud = 100		
+		self.var   =   0
 		# atributos
 		# velocidad inicial del jugador
 		self.change_x = 0
@@ -24,8 +28,8 @@ class JugadorPrincipal(pygame.sprite.Sprite):
 
 		# vectores que guardan los movimientos del jugador (sprites)
 		self.walking_frames_l = []
-		self.walking_frames_r = []
-
+		self.walking_frames_r = []		
+		
 		# posicion inicial del jugador
 		self.direction = "R"
 
@@ -48,6 +52,7 @@ class JugadorPrincipal(pygame.sprite.Sprite):
 		self.walking_frames_r.append(image)
 		image = sprite_imagen.get_imagen(280, 0, 56, 58)
 		self.walking_frames_r.append(image)
+			
 
 		# cargamos el sprite del personaje principal IZQUIERDA
 		image = sprite_imagen.get_imagen(0, 0, 56, 58)
@@ -77,25 +82,31 @@ class JugadorPrincipal(pygame.sprite.Sprite):
 		self.rect = self.image.get_rect()
  
 	def update(self):
-		""" Move the jugador. """
-		# gravedad
+		""" movimiento del jugador. """
+
+		# gravedad		
 		self.gravedad()		
 		
 		# Mover izquierda/derecha
+		
 		self.rect.x += self.change_x
-		pos = self.rect.x + self.level.world_shift
+		pos = self.rect.x + self.level.world_shift			
 		
 		print ("posicion X  " + str(pos) + "  cambio Y " + str(self.rect.y+58))
 		
 		if self.direction == "R":
 			frame = (pos // 30) % len(self.walking_frames_r)
 			self.image = self.walking_frames_r[frame]
+			
 		else:
 			frame = (pos // 30) % len(self.walking_frames_l)
-			self.image = self.walking_frames_l[frame]
+			self.image = self.walking_frames_l[frame]		
+			
 
-		# verificar si chocamos con algo
+		# verificar si chocamos con algo que va de izquierda a derecha
+		
 		block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
+		
 		for block in block_hit_list:
 			# If we are moving right,
 			# set our right side to the left side of the item we hit
@@ -106,9 +117,10 @@ class JugadorPrincipal(pygame.sprite.Sprite):
 				self.rect.left = block.rect.right
  
 		# mover arriba / abajo
+		
 		self.rect.y += self.change_y
 
-		# verifica si chocamos con algo
+		# verifica si chocamos con algo que sube o baja
 		block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
 		for block in block_hit_list:
  
@@ -176,5 +188,3 @@ class JugadorPrincipal(pygame.sprite.Sprite):
 	def menosVida(self):
 
 		self.salud = self.salud - 1
-		
-
