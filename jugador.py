@@ -16,11 +16,13 @@ class JugadorPrincipal(pygame.sprite.Sprite):
 	
 
 		# Call the parent's constructor
-		super().__init__()
+		super(self).__init__()
 		
 		#salud del jugador
 		self.salud = 100		
 		self.var   =   0
+
+		self.puntaje = 0
 		# atributos
 		# velocidad inicial del jugador
 		self.change_x = 0
@@ -92,7 +94,7 @@ class JugadorPrincipal(pygame.sprite.Sprite):
 		self.rect.x += self.change_x
 		pos = self.rect.x + self.level.world_shift			
 		
-		print ("posicion X  " + str(pos) + "  cambio Y " + str(self.rect.y+58))
+		#print ("posicion X  " + str(pos) + "  cambio Y " + str(self.rect.y+58))
 		
 		if self.direction == "R":
 			frame = (pos // 30) % len(self.walking_frames_r)
@@ -108,6 +110,8 @@ class JugadorPrincipal(pygame.sprite.Sprite):
 		block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
 		
 		for block in block_hit_list:
+			if block.esEnemigo:
+				self.salud -= 0.5
 			# If we are moving right,
 			# set our right side to the left side of the item we hit
 			if self.change_x > 0:
@@ -123,7 +127,8 @@ class JugadorPrincipal(pygame.sprite.Sprite):
 		# verifica si chocamos con algo que sube o baja
 		block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
 		for block in block_hit_list:
- 
+			if block.esEnemigo:
+				self.salud -= 0.5
 			# Reset our position based on the top/bottom of the object.
 			if self.change_y > 0:
 				self.rect.bottom = block.rect.top

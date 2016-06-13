@@ -6,7 +6,7 @@ import pygame
 import constantes
 
 class Sprite(object):
-#Clase para tomar imágenes de una imagen de sprites """
+#Clase para tomar imagenes de una imagen de sprites """
 	def __init__(self, archivo):
 #Constructor. le llega el nombre de la imagen de sprites. """
 		# cargar sprites

@@ -7,7 +7,9 @@ from clase_nivel import Nivel
 # creamos nivel 3
 class Nivel_03(Nivel):
     """ nivel 3 """
- 
+    def remove(self, block):
+      self.platform_list.remove(block)
+      
     def __init__(self, jugador):
         """ crear nivel 3. """
  
@@ -146,7 +148,7 @@ class Nivel_03(Nivel):
 		
 ############################################################################
 
-        # añadimos plataformas que se encuentran en level
+        # anadimos plataformas que se encuentran en level
         for platform in level:
             block = plataformas.Plataforma(platform[0])#imagen x y
             block.rect.x = platform[1]				   #ancho
@@ -273,6 +275,92 @@ class Nivel_03(Nivel):
         block_desierto_j.level = self
         self.platform_list.add(block_desierto_j)
 
+        # adicionamos una plataforma en movimiento 1
+        goomba = plataformas.MovimientoPlataforma(plataformas.goomba1)
+        goomba.rect.x = -630
+        goomba.rect.y = 240
+        goomba.boundary_left = -630
+        goomba.boundary_right = -560
+        goomba.change_x = 3
+        goomba.jugador = self.jugador
+        goomba.level = self        #anadimos a level la imagen
+        self.platform_list.add(goomba)
 
+        # adicionamos una plataforma en movimiento 1
+        goomba = plataformas.MovimientoPlataforma(plataformas.goomba1)
+        goomba.rect.x = -490
+        goomba.rect.y = 360
+        goomba.boundary_left = -490
+        goomba.boundary_right = -420
+        goomba.change_x = 3
+        goomba.jugador = self.jugador
+        goomba.level = self        #anadimos a level la imagen
+        self.platform_list.add(goomba)
+
+        # adicionamos una plataforma en movimiento 1
+        goomba = plataformas.MovimientoPlataforma(plataformas.goomba1)
+        goomba.rect.x = -350
+        goomba.rect.y = 480
+        goomba.boundary_left = -350
+        goomba.boundary_right = -280
+        goomba.change_x = 3
+        goomba.jugador = self.jugador
+        goomba.level = self        #anadimos a level la imagen
+        self.platform_list.add(goomba)
+
+        # adicionamos una plataforma en movimiento 1
+        goomba = plataformas.MovimientoPlataforma(plataformas.goomba1)
+        goomba.rect.x = 0
+        goomba.rect.y = 450
+        goomba.boundary_left = 0
+        goomba.boundary_right = 500
+        goomba.change_x = 5
+        goomba.jugador = self.jugador
+        goomba.level = self        #anadimos a level la imagen
+        self.platform_list.add(goomba)
+
+        # adicionamos una plataforma en movimiento 1
+        goomba = plataformas.MovimientoPlataforma(plataformas.goomba1)
+        goomba.rect.x = 690
+        goomba.rect.y = 410
+        goomba.boundary_left = 690
+        goomba.boundary_right = 1110
+        goomba.change_x = 3
+        goomba.jugador = self.jugador
+        goomba.level = self        #anadimos a level la imagen
+        self.platform_list.add(goomba)
+
+        # adicionamos una plataforma en movimiento 1
+        goomba = plataformas.MovimientoPlataforma(plataformas.goomba1)
+        goomba.rect.x = 790
+        goomba.rect.y = 270
+        goomba.boundary_left = 790
+        goomba.boundary_right = 1210
+        goomba.change_x = 3
+        goomba.jugador = self.jugador
+        goomba.level = self        #anadimos a level la imagen
+        self.platform_list.add(goomba)
+
+        # adicionamos una plataforma en movimiento 1
+        goomba = plataformas.MovimientoPlataforma(plataformas.goomba1)
+        goomba.rect.x = 690
+        goomba.rect.y = 130
+        goomba.boundary_left = 690
+        goomba.boundary_right = 1110
+        goomba.change_x = 3
+        goomba.jugador = self.jugador
+        goomba.level = self        #anadimos a level la imagen
+        self.platform_list.add(goomba)
+
+        # adicionamos una plataforma en movimiento 1
+        goomba = plataformas.MovimientoPlataforma(plataformas.goomba1)
+        goomba.rect.x = 1800
+        goomba.rect.y = 450
+        goomba.boundary_left = 1800
+        goomba.boundary_right = 2220
+        goomba.change_x = 3
+        goomba.jugador = self.jugador
+        goomba.level = self        #anadimos a level la imagen
+        self.platform_list.add(goomba)
 
 		

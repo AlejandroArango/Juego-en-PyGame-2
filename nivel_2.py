@@ -7,7 +7,9 @@ from clase_nivel import Nivel
 # creamos nivel 2
 class Nivel_02(Nivel):
     """ nivel 2. """
- 
+    def remove(self, block):
+      self.platform_list.remove(block)
+
     def __init__(self, jugador):
         """ crear nivel 2. """
  
@@ -43,10 +45,36 @@ class Nivel_02(Nivel):
                   [plataformas.bosque_plat_mov, 1940, 450],
 
                   [plataformas.bosque_plat_mov, 2010, 490],
+                  [plataformas.suelo_laba,   710, 569],
+                  [plataformas.suelo_laba,   762, 569],
+                  [plataformas.suelo_laba,   814, 569],
+                  [plataformas.suelo_laba,   866, 569],
+                  [plataformas.suelo_laba,   918, 569],
+                  [plataformas.suelo_laba,   970, 569],
+                  [plataformas.suelo_laba,   1022, 569],
+                  [plataformas.suelo_laba,   1074, 569],
+                  [plataformas.suelo_laba,   1126, 569],
+                  [plataformas.suelo_laba,   1178, 569],
+                  [plataformas.suelo_laba,   1230, 569],
+                  [plataformas.suelo_laba,   1282, 569],
+                  [plataformas.suelo_laba,   1334, 569],
+                  [plataformas.suelo_laba,   1386, 569],
+                  [plataformas.suelo_laba,   1438, 569],
+                  [plataformas.suelo_laba,   1490, 569],
+                  [plataformas.suelo_laba,   1542, 569],
+                  [plataformas.suelo_laba,   1594, 569],
+                  [plataformas.suelo_laba,   1646, 569],
+                  [plataformas.suelo_laba,   1698, 569],
+                  [plataformas.suelo_laba,   1750, 569],
+                  [plataformas.suelo_laba,   1802, 569],
+                  [plataformas.suelo_laba,   1854, 569],
+                  [plataformas.suelo_laba,   1906, 569],
+                  [plataformas.suelo_laba,   1958, 569],
+
 			  				  
-				  #[plataformas.bosque_izquierdo,2080, 530],se comentan para caminar de seguido y mirar el diseno
-                  #[plataformas.bosque_centro,   2150, 530],
-                  #[plataformas.bosque_derecho,  2220, 530],
+				          [plataformas.bosque_izquierdo,2080, 530],
+                  [plataformas.bosque_centro,   2150, 530],
+                  [plataformas.bosque_derecho,  2220, 530],
 				  
 #############################posicion X 2500 Zona gemela
 
@@ -82,10 +110,36 @@ class Nivel_02(Nivel):
                   [plataformas.bosque_plat_mov, 5670, 450],
 
                   [plataformas.bosque_plat_mov, 5740, 490],
-			  				  
-				  #[plataformas.bosque_izquierdo,5810, 530],
-                  #[plataformas.bosque_centro,   5880, 530],
-                  #[plataformas.bosque_derecho,  5950, 530],
+                  [plataformas.suelo_laba,   4386, 569],
+                  [plataformas.suelo_laba,   4438, 569],
+                  [plataformas.suelo_laba,   4490, 569],
+                  [plataformas.suelo_laba,   4542, 569],
+                  [plataformas.suelo_laba,   4594, 569],
+                  [plataformas.suelo_laba,   4646, 569],
+                  [plataformas.suelo_laba,   4698, 569],
+                  [plataformas.suelo_laba,   4750, 569],
+                  [plataformas.suelo_laba,   4802, 569],
+                  [plataformas.suelo_laba,   4854, 569],
+                  [plataformas.suelo_laba,   4906, 569],
+                  [plataformas.suelo_laba,   4958, 569],
+                  [plataformas.suelo_laba,   5010, 569],
+                  [plataformas.suelo_laba,   5062, 569],
+                  [plataformas.suelo_laba,   5114, 569],
+                  [plataformas.suelo_laba,   5166, 569],
+                  [plataformas.suelo_laba,   5218, 569],
+                  [plataformas.suelo_laba,   5270, 569],
+                  [plataformas.suelo_laba,   5322, 569],
+                  [plataformas.suelo_laba,   5374, 569],
+                  [plataformas.suelo_laba,   5426, 569],
+                  [plataformas.suelo_laba,   5478, 569],
+                  [plataformas.suelo_laba,   5530, 569],
+                  [plataformas.suelo_laba,   5582, 569],
+                  [plataformas.suelo_laba,   5634, 569],
+                  [plataformas.suelo_laba,   5686, 569],
+
+				          [plataformas.bosque_izquierdo,5810, 530],
+                  [plataformas.bosque_centro,   5880, 530],
+                  [plataformas.bosque_derecho,  5950, 530],
 				  
 #############################posicion X 6200 Zona gemela 2
 
@@ -137,7 +191,7 @@ class Nivel_02(Nivel):
 		
 ############################################################################			
  
-        # añadimos plataformas que se encuentran en level
+        # anadimos plataformas que se encuentran en level
         for platform in level:
             block = plataformas.Plataforma(platform[0])#imagen x y
             block.rect.x = platform[1]				   #ancho
@@ -257,4 +311,93 @@ class Nivel_02(Nivel):
         block_bosque_j.change_y = 1
         block_bosque_j.jugador = self.jugador
         block_bosque_j.level = self
-        self.platform_list.add(block_bosque_j)		
+        self.platform_list.add(block_bosque_j)
+
+        # adicionamos una plataforma en movimiento 1
+        goomba = plataformas.MovimientoPlataforma(plataformas.goomba1)
+        goomba.rect.x = 6200
+        goomba.rect.y = 360
+        goomba.boundary_left = 6200
+        goomba.boundary_right = 6690
+        goomba.change_x = 3
+        goomba.jugador = self.jugador
+        goomba.level = self        #anadimos a level la imagen
+        self.platform_list.add(goomba)
+
+        # adicionamos una plataforma en movimiento 1
+        goomba = plataformas.MovimientoPlataforma(plataformas.goomba1)
+        goomba.rect.x = 2500
+        goomba.rect.y = 360
+        goomba.boundary_left = 2500
+        goomba.boundary_right = 2990
+        goomba.change_x = 3
+        goomba.jugador = self.jugador
+        goomba.level = self        #anadimos a level la imagen
+        self.platform_list.add(goomba)
+
+        # adicionamos una plataforma en movimiento 1
+        goomba = plataformas.MovimientoPlataforma(plataformas.goomba1)
+        goomba.rect.x = 6200
+        goomba.rect.y = 550
+        goomba.boundary_left = 6200
+        goomba.boundary_right = 6690
+        goomba.change_x = 2
+        goomba.jugador = self.jugador
+        goomba.level = self        #anadimos a level la imagen
+        self.platform_list.add(goomba)
+
+        # adicionamos una plataforma en movimiento 1
+        goomba = plataformas.MovimientoPlataforma(plataformas.goomba1)
+        goomba.rect.x = 2500
+        goomba.rect.y = 550
+        goomba.boundary_left = 2500
+        goomba.boundary_right = 2990
+        goomba.change_x = 2
+        goomba.jugador = self.jugador
+        goomba.level = self        #anadimos a level la imagen
+        self.platform_list.add(goomba)
+
+
+        # adicionamos una plataforma en movimiento 1
+        goomba = plataformas.MovimientoPlataforma(plataformas.goomba1)
+        goomba.rect.x = 3300
+        goomba.rect.y = 360
+        goomba.boundary_left = 3300
+        goomba.boundary_right = 3700
+        goomba.change_x = 2
+        goomba.jugador = self.jugador
+        goomba.level = self        #anadimos a level la imagen
+        self.platform_list.add(goomba)
+
+        # adicionamos una plataforma en movimiento 1
+        goomba = plataformas.MovimientoPlataforma(plataformas.goomba1)
+        goomba.rect.x = 7000
+        goomba.rect.y = 360
+        goomba.boundary_left = 7000
+        goomba.boundary_right = 7490
+        goomba.change_x = 2
+        goomba.jugador = self.jugador
+        goomba.level = self        #anadimos a level la imagen
+        self.platform_list.add(goomba)
+
+        # adicionamos una plataforma en movimiento 1
+        goomba = plataformas.MovimientoPlataforma(plataformas.goomba1)
+        goomba.rect.x = 3300
+        goomba.rect.y = 550
+        goomba.boundary_left = 3300
+        goomba.boundary_right = 3790
+        goomba.change_x = 3
+        goomba.jugador = self.jugador
+        goomba.level = self        #anadimos a level la imagen
+        self.platform_list.add(goomba)
+
+        # adicionamos una plataforma en movimiento 1
+        goomba = plataformas.MovimientoPlataforma(plataformas.goomba1)
+        goomba.rect.x = 7000
+        goomba.rect.y = 550
+        goomba.boundary_left = 7000
+        goomba.boundary_right = 7490
+        goomba.change_x = 3
+        goomba.jugador = self.jugador
+        goomba.level = self        #anadimos a level la imagen
+        self.platform_list.add(goomba)

@@ -1,0 +1,8 @@
+tamiyo_1 =   "Al parecer la historia era cierta"
+jace_2 =     "cual historia ! ?"
+tamiyo_3 =   "el bosque cuenta que tu eliminaste"
+tamiyo_4  =  "al anciano nicol"
+jace_5  =    "su nombre era lucin"
+tamiyo_6 =   "que ingenuo eres, si llegas a mi"
+tamiyo_7 =   "te contare una historia"
+tamiyo_8  =  "muajajajajajaja"

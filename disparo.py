@@ -34,7 +34,8 @@ class DisparoJugador(pygame.sprite.Sprite):
 
 		self.level = None
 		self.lista_sprites_activos = None
-		
+		self.jugador = None
+
 		# cargamos el sprite del disparo DERECHA
 		image = sprite_imagen.get_imagen(0, 0, 31, 31)
 		self.shot_frames.append(image)
@@ -151,6 +152,9 @@ class DisparoJugador(pygame.sprite.Sprite):
 
 			block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
 			for block in block_hit_list:
+				if block.esEnemigo:
+					self.level.remove(block)
+					self.jugador.puntaje += 1
 				self.colision = True
 				self.contFrames = 0
 				

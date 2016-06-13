@@ -2,7 +2,7 @@ import pygame
 
 import constantes
 
-from goomba import EnemigoGoomba
+import plataformas
 
 import nivel_1
 import nivel_2
@@ -10,14 +10,17 @@ import nivel_3
 
 import textos_1
 import textos_1_boss
+import textos_2
 
 import jugador
-from jugador import JugadorPrincipal 
+from jugador import JugadorPrincipal
 
 import vida
 from vida import Vida
 
 from disparo import DisparoJugador
+
+from goomba import EnemigoGoomba
 
 ancho_pantalla  = 900
 alto_pantalla = 640
@@ -28,12 +31,16 @@ def main():
     variable = 1
     variable1= 1
     variable2= 1	
-    puntaje	 = 0
+    variable3= 1
+    current_position=0	
     pygame.init()
  
     # definimos pantalla
     tamano_pantalla = [constantes.ancho_pantalla, constantes.alto_pantalla]
     pantalla = pygame.display.set_mode(tamano_pantalla)
+
+    s_fondo = pygame.mixer.Sound("sound/elem.wav")
+    s_fondo.play()
 
     #Menu principal del juego:
     ########################################################################################
@@ -48,7 +55,7 @@ def main():
     Pos = 1
     opcion1 = Opcion.render("*  Jugar", True, constantes.color_red)
 
-    titulo = Titulo.render("BIENVENIDO", True, constantes.color_blanco)
+    titulo = Titulo.render("PlanesWalker", True, constantes.color_blanco)
     titulo_rect = titulo.get_rect()
     titulo_x = ancho_pantalla/2 - titulo_rect.width/2
     titulo_y = 100
@@ -150,6 +157,8 @@ def main():
     jugador.rect.y = 0#constantes.alto_pantalla - jugador.rect.height
     lista_sprites_activos.add(jugador)
 
+
+
 #########################################################################################
     texto=False
     terminar = False
@@ -158,6 +167,21 @@ def main():
  
     # -------- ciclo del juego -----------
     while not terminar:
+        if jugador.salud < 1:
+            terminar5 = False
+            while not terminar5:
+                titulo = Titulo.render("Game Over", True, constantes.color_blanco)
+                titulo_rect = titulo.get_rect()
+                titulo_x = ancho_pantalla/2 - titulo_rect.width/2
+                titulo_y = 100
+                pantalla.blit(titulo, [titulo_x,titulo_y])
+                pygame.display.flip()
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT: 
+                        terminar5 = True
+                        terminar = True
+                    if event.type == pygame.KEYDOWN:
+                        main()
         for event in pygame.event.get(): 
             if event.type == pygame.QUIT: 
                 terminar = True 
@@ -180,14 +204,20 @@ def main():
                     if event.key == pygame.K_SPACE:
                         variable += 1
 						
-                #if current_level_no==0 and current_position <= -2570:		
-                    #if event.key == pygame.K_SPACE:
-                        #variable1 += 1				
-						
                 if current_level_no==1:			
                     if event.key == pygame.K_SPACE:
                         variable2 += 1		
 						
+                if current_level_no==0 and current_position < 0:	
+                    if current_position <-2750:
+                        if event.key == pygame.K_SPACE:
+                            variable1 += 1
+							
+                if current_level_no==1 and current_position < 0:	
+                    if current_position <-2500:
+                        if event.key == pygame.K_SPACE:
+                            variable3 += 1													
+                    ####################################################################						
                 if event.key == pygame.K_t:
                     texto = True			
                 if event.key == pygame.K_LEFT:
@@ -201,6 +231,7 @@ def main():
                     disparo = DisparoJugador(pos[0],pos[1],jugador.getDerecha())
                     disparo.level = current_level
                     disparo.lista_sprites_activos = lista_sprites_activos
+                    disparo.jugador = jugador
                     lista_sprites_activos.add(disparo)
 
             if event.type == pygame.KEYUP:
@@ -244,28 +275,18 @@ def main():
 		# encima de esto colocar todo lo referente a enemigos, despues pintamos		
         current_level.draw(pantalla)
         lista_sprites_activos.draw(pantalla)
-        print (current_position)		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+        #print (current_position)		
 ################################ P U N T A J E ####################################
 		
 		#mostrar puntaje jugador
-        txt_puntos = fuente_puntaje.render("Puntaje "+ str(puntaje), True, constantes.color_negro)
+        txt_puntos = fuente_puntaje.render("Puntaje "+ str(jugador.puntaje), True, constantes.color_red)
         pantalla.blit(txt_puntos, [jugador.rect.x-450,2])
 
 ################################   S A L U D   ####################################
 		
 		#mostrar puntaje jugador
-        txt_puntos = fuente_puntaje.render("salud "+ str(jugador.salud), True, constantes.color_negro)
+        txt_puntos = fuente_puntaje.render("salud "+ str(jugador.salud), True, constantes.color_red)
         pantalla.blit(txt_puntos, [jugador.rect.x,2])		
 		
 ############################## D I A L O G O S 1 ##################################		
@@ -374,8 +395,64 @@ def main():
                 elif variable1 == 8:
                     txt_8 = fuente_texto.render(textos_1_boss.jace_8,  True, constantes.color_azul)
                     pantalla.blit(txt_8, [jugador.rect.x,530])	
+
+############################## D I A L O G O S 3 ##################################	
+        if current_level_no == 1:
+            if texto==False:
+                if variable2   == 1:	
+                    txt_1 = fuente_texto.render(textos_2.tamiyo_1, True, constantes.color_verde)
+                    pantalla.blit(txt_1, [jugador.rect.x,530])
+                elif variable2 == 2:
+                    txt_2 = fuente_texto.render(textos_2.jace_2, True, constantes.color_azul)
+                    pantalla.blit(txt_2, [jugador.rect.x,530])	
+                elif variable2 == 3:	
+                    txt_3 = fuente_texto.render(textos_2.tamiyo_3, True, constantes.color_verde)
+                    pantalla.blit(txt_3, [jugador.rect.x,530])
+                elif variable2 == 4:
+                    txt_4 = fuente_texto.render(textos_2.tamiyo_4, True, constantes.color_verde)
+                    pantalla.blit(txt_4, [jugador.rect.x,530])
+                elif variable2 == 5:
+                    txt_5 = fuente_texto.render(textos_2.jace_5, True, constantes.color_azul)
+                    pantalla.blit(txt_5, [jugador.rect.x,530])	
+                elif variable2 == 6:	
+                    txt_6 = fuente_texto.render(textos_2.tamiyo_6, True, constantes.color_verde)
+                    pantalla.blit(txt_6, [jugador.rect.x,530])
+                elif variable2 == 7:
+                    txt_7 = fuente_texto.render(textos_2.tamiyo_7 , True, constantes.color_verde)
+                    pantalla.blit(txt_7, [jugador.rect.x,530])						
+                elif variable2 == 8:
+                    txt_8 = fuente_texto.render(textos_2.tamiyo_8,  True, constantes.color_verde)
+                    pantalla.blit(txt_8, [jugador.rect.x,530])				
+
+############################## D I A L O G O S 4 ##################################	
+        if current_level_no == 1 and current_position <= -2570:
+            if texto==False:
+                if variable3   == 1:	
+                    txt_1 = fuente_texto.render(textos_2.tamiyo_1, True, constantes.color_verde)
+                    pantalla.blit(txt_1, [jugador.rect.x,530])
+                elif variable3 == 2:
+                    txt_2 = fuente_texto.render(textos_2.jace_2, True, constantes.color_azul)
+                    pantalla.blit(txt_2, [jugador.rect.x,530])	
+                elif variable3 == 3:	
+                    txt_3 = fuente_texto.render(textos_2.tamiyo_3, True, constantes.color_verde)
+                    pantalla.blit(txt_3, [jugador.rect.x,530])
+                elif variable3 == 4:
+                    txt_4 = fuente_texto.render(textos_2.tamiyo_4, True, constantes.color_verde)
+                    pantalla.blit(txt_4, [jugador.rect.x,530])
+                elif variable3 == 5:
+                    txt_5 = fuente_texto.render(textos_2.jace_5, True, constantes.color_azul)
+                    pantalla.blit(txt_5, [jugador.rect.x,530])	
+                elif variable3 == 6:	
+                    txt_6 = fuente_texto.render(textos_2.tamiyo_6, True, constantes.color_verde)
+                    pantalla.blit(txt_6, [jugador.rect.x,530])
+                elif variable3 == 7:
+                    txt_7 = fuente_texto.render(textos_2.tamiyo_7 , True, constantes.color_verde)
+                    pantalla.blit(txt_7, [jugador.rect.x,530])						
+                elif variable3 == 8:
+                    txt_8 = fuente_texto.render(textos_2.tamiyo_8,  True, constantes.color_verde)
+                    pantalla.blit(txt_8, [jugador.rect.x,530])					
 ####################################################################################
-        puntaje += 1		
+	
         reloj.tick(60)
         pygame.display.flip()
 
